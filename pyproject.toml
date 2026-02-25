@@ -1,0 +1,83 @@
+[project]
+name = "retinal-disease-classifier-medsiglip"
+version = "1.0.0"
+description = "Retinal Disease Classification using MedSigLIP"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = {text = "MIT"}
+authors = [
+    {name = "Tejashree Khot"}
+]
+
+dependencies = [
+    "accelerate",
+    "datasets",
+    "evaluate",
+    "grad-cam",
+    "jupyterlab",
+    "kagglehub",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pillow",
+    "scikit-learn",
+    "sentencepiece==0.2.1",
+    "tensorboard",
+    "torch",
+    "torchvision",
+    "tqdm",
+    "transformers==4.57.6",
+    "wandb",
+]
+
+[dependency-groups]
+dev = [
+    "coverage",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+    "pytest-xdist",
+    "ruff",
+    "types-requests"
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.mypy]
+check_untyped_defs = true
+warn_no_return = true
+ignore_missing_imports = true
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+check_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+src = ["src"]
+
+[tool.ruff.format]
+quote-style = "double"
+skip-magic-trailing-comma = true
+indent-style = "space"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
